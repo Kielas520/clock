@@ -33,3 +33,4 @@
 .\objects\main.o: .\Hardware\OLED.h
 .\objects\main.o: .\System\timer1.h
 .\objects\main.o: .\Hardware\Key.h
+.\objects\main.o: .\Hardware\Buzzer.h

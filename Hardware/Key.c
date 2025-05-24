@@ -39,10 +39,10 @@ void Key_GetNum(uint8_t *key_states)
                 Delay_ms(10); // 消抖
                 key_states[i] = 1;
                 // 更新全局变量
-                if (i == 0) set_mode = !set_mode; // PB13
-                else if (i == 1) trigger_down = 1;  // PB15
-                else if (i == 2) trigger_up = 1; // PA9
-                else if (i == 3) confirm = 1;     // PA11
+                if (i == 0) smart_clock.key_function.set_mode = !smart_clock.key_function.set_mode; // PB13
+                else if (i == 1) smart_clock.key_function.trigger_down = 1;  // PB15
+                else if (i == 2) smart_clock.key_function.trigger_up = 1; // PA9
+                else if (i == 3) smart_clock.key_function.confirm = 1;     // PA11
             }
         }
     }
