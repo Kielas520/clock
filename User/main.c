@@ -86,6 +86,49 @@ void UpdateTime(void) {
     }
 }
 
+
+// 倒计时更新函数
+void UpdateCountdownTime(void) {
+    if (countdown.sec > 59) {
+        countdown.min++;
+        countdown.sec = 0;
+    } else if (countdown.sec < 0) {
+        countdown.min--;
+        countdown.sec = 59;
+    }
+    if (countdown.min > 59) {
+        countdown.hour++;
+        countdown.min = 0;
+    } else if (time.min < 0) {
+        countdown.hour--;
+        countdown.min = 59;
+    }
+    if (countdown.hour > 23) {
+        countdown.day++;
+        countdown.hour = 0;
+        days_in_current_month = get_days_in_month(countdown.month, countdown.year);
+        if (countdown.day > days_in_current_month) {
+            countdown.month++;
+            countdown.day = 1; 
+            if (countdown.month > 12) {
+                countdown.year++;
+                countdown.month = 1; 
+            }
+        }
+    } else if (countdown.hour < 0) {
+        countdown.day--;
+        countdown.hour = 23;
+        if (countdown.day < 1) {
+            countdown.month--;
+            if (countdown.month < 1) {
+                countdown.year--;
+                countdown.month = 12;
+            }
+            countdown.day = get_days_in_month(countdown.month, countdown.year);
+        }
+    }
+}
+
 void ShowTime(void) {
     OLED_ShowString(4, 1, "--Mode----Show--");
     OLED_ShowString(2, 1, "------Time------");
@@ -164,7 +207,7 @@ int main(void) {
         Key_GetNum(key_states);
         // 更新当前时间
         UpdateTime();
-        
+        UpdateCountdownTime();
         // 调试：取消注释以启用
         // ShowKeyStates();
         
