@@ -809,7 +809,7 @@ I (.\Library\stm32f10x_tim.h)(0x6831B25A)
 I (.\Library\stm32f10x_usart.h)(0x6831B25A)
 I (.\Library\stm32f10x_wwdg.h)(0x6831B25A)
 I (.\Library\misc.h)(0x6831B25A)
-F (.\Hardware\Key.c)(0x6831C8B3)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\Library -I .\User -I .\System -I .\Hardware-ID:\KEIL_PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="542" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\key.o --omf_browse .\objects\key.crf --depend .\objects\key.d)
+F (.\Hardware\Key.c)(0x68351CB7)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\Library -I .\User -I .\System -I .\Hardware-ID:\KEIL_PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="542" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\key.o --omf_browse .\objects\key.crf --depend .\objects\key.d)
 I (.\Start\stm32f10x.h)(0x6831B25D)
 I (.\Start\core_cm3.h)(0x6831B25D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
@@ -839,9 +839,9 @@ I (.\Library\stm32f10x_usart.h)(0x6831B25A)
 I (.\Library\stm32f10x_wwdg.h)(0x6831B25A)
 I (.\Library\misc.h)(0x6831B25A)
 I (.\System\Delay.h)(0x6831B25D)
-I (.\User\global.h)(0x6831FAE9)
-I (Hardware\Key.h)(0x6831B25A)
-F (.\Hardware\Key.h)(0x6831B25A)()
+I (.\User\global.h)(0x68351CB7)
+I (Hardware\Key.h)(0x68351CB7)
+F (.\Hardware\Key.h)(0x68351CB7)()
 F (.\Hardware\OLED.c)(0x6831B25A)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\Library -I .\User -I .\System -I .\Hardware-ID:\KEIL_PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="542" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\oled.o --omf_browse .\objects\oled.crf --depend .\objects\oled.d)
 I (.\Start\stm32f10x.h)(0x6831B25D)
 I (.\Start\core_cm3.h)(0x6831B25D)
@@ -872,7 +872,7 @@ I (.\Library\stm32f10x_usart.h)(0x6831B25A)
 I (.\Library\stm32f10x_wwdg.h)(0x6831B25A)
 I (.\Library\misc.h)(0x6831B25A)
 I (Hardware\OLED_Font.h)(0x6831B25A)
-F (.\Hardware\OLED.h)(0x6831B25A)()
+F (.\Hardware\OLED.h)(0x68351CB7)()
 F (.\Hardware\OLED_Font.h)(0x6831B25A)()
 F (.\Hardware\Buzzer.c)(0x6831B4BB)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\Library -I .\User -I .\System -I .\Hardware-ID:\KEIL_PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="542" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\buzzer.o --omf_browse .\objects\buzzer.crf --depend .\objects\buzzer.d)
 I (.\Start\stm32f10x.h)(0x6831B25D)
@@ -903,8 +903,8 @@ I (.\Library\stm32f10x_tim.h)(0x6831B25A)
 I (.\Library\stm32f10x_usart.h)(0x6831B25A)
 I (.\Library\stm32f10x_wwdg.h)(0x6831B25A)
 I (.\Library\misc.h)(0x6831B25A)
-F (.\Hardware\Buzzer.h)(0x6831B4BB)()
-F (.\User\main.c)(0x68331204)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\Library -I .\User -I .\System -I .\Hardware-ID:\KEIL_PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="542" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\Hardware\Buzzer.h)(0x68351CB7)()
+F (.\User\main.c)(0x68351EFF)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\Library -I .\User -I .\System -I .\Hardware-ID:\KEIL_PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="542" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (.\Start\stm32f10x.h)(0x6831B25D)
 I (.\Start\core_cm3.h)(0x6831B25D)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588B8344)
@@ -934,11 +934,11 @@ I (.\Library\stm32f10x_usart.h)(0x6831B25A)
 I (.\Library\stm32f10x_wwdg.h)(0x6831B25A)
 I (.\Library\misc.h)(0x6831B25A)
 I (.\System\Delay.h)(0x6831B25D)
-I (User\global.h)(0x6831FAE9)
-I (.\Hardware\OLED.h)(0x6831B25A)
+I (User\global.h)(0x68351CB7)
+I (.\Hardware\OLED.h)(0x68351CB7)
 I (.\System\timer1.h)(0x6831B25D)
-I (.\Hardware\Key.h)(0x6831B25A)
-I (.\Hardware\Buzzer.h)(0x6831B4BB)
+I (.\Hardware\Key.h)(0x68351CB7)
+I (.\Hardware\Buzzer.h)(0x68351CB7)
 F (.\User\stm32f10x_conf.h)(0x6831B25D)()
 F (.\User\stm32f10x_it.c)(0x6831B25D)(--c99 -c --cpu Cortex-M3 -g -O0 --apcs=interwork --split_sections -I .\Start -I .\Library -I .\User -I .\System -I .\Hardware-ID:\KEIL_PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-D__UVISION_VERSION="542" -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER-o .\objects\stm32f10x_it.o --omf_browse .\objects\stm32f10x_it.crf --depend .\objects\stm32f10x_it.d)
 I (User\stm32f10x_it.h)(0x6831B25D)
@@ -971,4 +971,4 @@ I (.\Library\stm32f10x_usart.h)(0x6831B25A)
 I (.\Library\stm32f10x_wwdg.h)(0x6831B25A)
 I (.\Library\misc.h)(0x6831B25A)
 F (.\User\stm32f10x_it.h)(0x6831B25D)()
-F (.\User\global.h)(0x6831FAE9)()
+F (.\User\global.h)(0x68351CB7)()

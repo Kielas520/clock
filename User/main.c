@@ -754,7 +754,7 @@ int main(void) {
                         smart_clock.key_function.trigger_up = 0;
                     } else if (smart_clock.key_function.trigger_down) {
                         countdown.year--;
-                        if (countdown.year < 1970) countdown.year = 1970;
+                        if (countdown.year < 0) countdown.year = 0;
                         smart_clock.key_function.trigger_down = 0;
                     }
                     OLED_ShowString(2, 1, "--Count Year----");
@@ -787,7 +787,7 @@ void TIM1_UP_IRQHandler(void) {
 				countdown.sec--;
 			}
             if (time.sec % 10 == 0) {
-                smart_clock.key_function.set_mode = !smart_clock.key_function.set_mode;
+                smart_clock.show_clock_mode=!smart_clock.show_clock_mode;
             }
         }
     }
