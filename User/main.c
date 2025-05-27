@@ -18,7 +18,7 @@ Time_t end = {0, 0, 0, 0, 0, 0}; // 定义倒计时时间，初始值为 0
 Time_t countdown = {0, 0, 0, 0, 0, 0}; // 定义倒计时时间，初始值为 0
 uint8_t days_in_current_month = 30; // 存储当前月份的天数
 Smart_Clock_t smart_clock;
-static uint8_t alarm_triggered = 0;
+uint8_t alarm_triggered = 0;
 uint8_t countdown_start = 0;
 uint8_t choose = 0; // 当前选择项
 int8_t choose_buff = 0; // 选择缓冲变量
@@ -177,14 +177,14 @@ int main(void) {
     {
 		if (is_time_equal(&time, &clock)) 
         {
-            if (!alarm_triggered) 
+            if (alarm_triggered) 
             {
                     Buzzer_ON();
 					OLED_ShowString(1, 1, "Kielas-CLK-TIME-");
                     Delay_ms(1000);
 					OLED_ShowString(1, 1, "Kielas          ");
                     Buzzer_OFF();
-                    alarm_triggered = 1;
+                    alarm_triggered = 0;
             }
 		}
 		else if (is_time_equal(&end, &countdown)) 
@@ -199,10 +199,7 @@ int main(void) {
                     countdown_start = 0;
             }
 		}
-        else 
-        {
-            alarm_triggered = 0;
-		}
+
         // 获取按键状态
         Key_GetNum(key_states);
         // 更新当前时间
@@ -277,7 +274,7 @@ int main(void) {
                     if (smart_clock.key_function.confirm) 
                     {
                         smart_clock.key_function.confirm = 0;
-                        smart_clock.set_clock_mode = 1;
+                        smart_clock.set_time_mode = 1;
                         choose = 1;
                     }
                 }
@@ -625,6 +622,7 @@ int main(void) {
 										{
                         smart_clock.key_function.confirm = 0;
                         smart_clock.set_clock_mode = 0; // 完成闹钟设置，退出
+						alarm_triggered = 1;
                         smart_clock.key_function.set_mode = 0;
                         choose = 0;
                     }
@@ -704,12 +702,12 @@ int main(void) {
                     if (smart_clock.key_function.trigger_up) {
                         countdown.day++;
                         days_in_current_month = get_days_in_month(countdown.month, countdown.year);
-                        if (countdown.day > days_in_current_month) countdown.day = 1;
+                        if (countdown.day > days_in_current_month) countdown.day = days_in_current_month;
                         smart_clock.key_function.trigger_up = 0;
                     } else if (smart_clock.key_function.trigger_down) {
                         countdown.day--;
                         days_in_current_month = get_days_in_month(countdown.month, countdown.year);
-                        if (countdown.day < 1) countdown.day = days_in_current_month;
+                        if (countdown.day < 0) countdown.day = 0;
                         smart_clock.key_function.trigger_down = 0;
                     }
                     OLED_ShowString(2, 1, "--Count Day-----");
@@ -728,11 +726,11 @@ int main(void) {
                 if (smart_clock.countdown_mode == COUNTDOWN_MONTH && choose == 1) {
                     if (smart_clock.key_function.trigger_up) {
                         countdown.month++;
-                        if (countdown.month > 12) countdown.month = 1;
+                        if (countdown.month > 12) countdown.month = 12;
                         smart_clock.key_function.trigger_up = 0;
                     } else if (smart_clock.key_function.trigger_down) {
                         countdown.month--;
-                        if (countdown.month < 1) countdown.month = 12;
+                        if (countdown.month < 1) countdown.month = 0;
                         smart_clock.key_function.trigger_down = 0;
                     }
                     OLED_ShowString(2, 1, "-Count Month----");
