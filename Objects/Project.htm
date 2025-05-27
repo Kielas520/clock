@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\Project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\Project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Tue May 27 11:14:54 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Tue May 27 16:11:28 2025
 <BR><P>
 <H3>Maximum Stack Usage =        104 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -710,15 +710,11 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[6b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM1_Init
 </UL>
 
-<P><STRONG><a name="[72]"></a>UpdateCountdownTime</STRONG> (Thumb, 300 bytes, Stack size 4 bytes, main.o(i.UpdateCountdownTime))
-<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = UpdateCountdownTime &rArr; get_days_in_month
-</UL>
-<BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_days_in_month
-</UL>
-<BR>[Called By]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<P><STRONG><a name="[76]"></a>UpdateCountdownTime</STRONG> (Thumb, 144 bytes, Stack size 0 bytes, main.o(i.UpdateCountdownTime))
+<BR><BR>[Called By]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[74]"></a>UpdateTime</STRONG> (Thumb, 300 bytes, Stack size 4 bytes, main.o(i.UpdateTime))
+<P><STRONG><a name="[72]"></a>UpdateTime</STRONG> (Thumb, 300 bytes, Stack size 4 bytes, main.o(i.UpdateTime))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = UpdateTime &rArr; get_days_in_month
 </UL>
 <BR>[Calls]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_days_in_month
@@ -732,28 +728,27 @@ Global Symbols
 <P><STRONG><a name="[73]"></a>get_days_in_month</STRONG> (Thumb, 42 bytes, Stack size 12 bytes, main.o(i.get_days_in_month))
 <BR><BR>[Stack]<UL><LI>Max Depth = 12<LI>Call Chain = get_days_in_month
 </UL>
-<BR>[Calls]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;is_leap_year
+<BR>[Calls]<UL><LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;is_leap_year
 </UL>
 <BR>[Called By]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UpdateTime
-<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UpdateCountdownTime
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UpdateTime
 </UL>
 
-<P><STRONG><a name="[75]"></a>is_leap_year</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, main.o(i.is_leap_year))
+<P><STRONG><a name="[74]"></a>is_leap_year</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, main.o(i.is_leap_year))
 <BR><BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_days_in_month
 </UL>
 
-<P><STRONG><a name="[76]"></a>is_time_equal</STRONG> (Thumb, 82 bytes, Stack size 0 bytes, main.o(i.is_time_equal))
+<P><STRONG><a name="[75]"></a>is_time_equal</STRONG> (Thumb, 82 bytes, Stack size 0 bytes, main.o(i.is_time_equal))
 <BR><BR>[Called By]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[44]"></a>main</STRONG> (Thumb, 5168 bytes, Stack size 0 bytes, main.o(i.main))
+<P><STRONG><a name="[44]"></a>main</STRONG> (Thumb, 4366 bytes, Stack size 0 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 104<LI>Call Chain = main &rArr; ShowTime &rArr; OLED_ShowNum &rArr; OLED_ShowChar &rArr; OLED_SetCursor &rArr; OLED_WriteCommand &rArr; OLED_I2C_SendByte
 </UL>
-<BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;is_time_equal
+<BR>[Calls]<UL><LI><a href="#[75]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;is_time_equal
 <LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;get_days_in_month
-<LI><a href="#[74]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UpdateTime
-<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UpdateCountdownTime
+<LI><a href="#[72]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UpdateTime
+<LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UpdateCountdownTime
 <LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ShowTime
 <LI><a href="#[69]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ShowDate
 <LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Buzzer_ON

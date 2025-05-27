@@ -104,28 +104,10 @@ void UpdateCountdownTime(void) {
         countdown.min = 59;
     }
     if (countdown.hour > 23) {
-        countdown.day++;
         countdown.hour = 0;
-        days_in_current_month = get_days_in_month(countdown.month, countdown.year);
-        if (countdown.day > days_in_current_month) {
-            countdown.month++;
-            countdown.day = 1; 
-            if (countdown.month > 12) {
-                countdown.year++;
-                countdown.month = 1; 
-            }
-        }
+        
     } else if (countdown.hour < 0) {
-        countdown.day--;
         countdown.hour = 23;
-        if (countdown.day < 1) {
-            countdown.month--;
-            if (countdown.month < 1) {
-                countdown.year--;
-                countdown.month = 12;
-            }
-            countdown.day = get_days_in_month(countdown.month, countdown.year);
-        }
     }
 }
 
@@ -693,77 +675,7 @@ int main(void) {
                     OLED_ShowString(3, 10, " :<");
                     OLED_ShowNum(3, 13, countdown.sec, 2);
                     OLED_ShowString(3, 15, "> ");
-                    if (smart_clock.key_function.confirm) {
-                        smart_clock.key_function.confirm = 0;
-                        smart_clock.countdown_mode++;
-                    }
-                }
-                if (smart_clock.countdown_mode == COUNTDOWN_DAY && choose == 1) {
-                    if (smart_clock.key_function.trigger_up) {
-                        countdown.day++;
-                        days_in_current_month = get_days_in_month(countdown.month, countdown.year);
-                        if (countdown.day > days_in_current_month) countdown.day = days_in_current_month;
-                        smart_clock.key_function.trigger_up = 0;
-                    } else if (smart_clock.key_function.trigger_down) {
-                        countdown.day--;
-                        days_in_current_month = get_days_in_month(countdown.month, countdown.year);
-                        if (countdown.day < 0) countdown.day = 0;
-                        smart_clock.key_function.trigger_down = 0;
-                    }
-                    OLED_ShowString(2, 1, "--Count Day-----");
-                    OLED_ShowString(3, 1, " ");
-                    OLED_ShowNum(3, 2, countdown.year, 4);
-                    OLED_ShowString(3, 6, " : ");
-                    OLED_ShowNum(3, 9, countdown.month, 2);
-                    OLED_ShowString(3, 11, " :<");
-                    OLED_ShowNum(3, 14, countdown.day, 2);
-                    OLED_ShowString(3, 16, "> ");
-                    if (smart_clock.key_function.confirm) {
-                        smart_clock.key_function.confirm = 0;
-                        smart_clock.countdown_mode++;
-                    }
-                }
-                if (smart_clock.countdown_mode == COUNTDOWN_MONTH && choose == 1) {
-                    if (smart_clock.key_function.trigger_up) {
-                        countdown.month++;
-                        if (countdown.month > 12) countdown.month = 12;
-                        smart_clock.key_function.trigger_up = 0;
-                    } else if (smart_clock.key_function.trigger_down) {
-                        countdown.month--;
-                        if (countdown.month < 1) countdown.month = 0;
-                        smart_clock.key_function.trigger_down = 0;
-                    }
-                    OLED_ShowString(2, 1, "-Count Month----");
-                    OLED_ShowString(3, 1, " ");
-                    OLED_ShowNum(3, 2, countdown.year, 4);
-                    OLED_ShowString(3, 6, " :<");
-                    OLED_ShowNum(3, 9, countdown.month, 2);
-                    OLED_ShowString(3, 11, ">: ");
-                    OLED_ShowNum(3, 14, countdown.day, 2);
-                    OLED_ShowString(3, 16, " ");
-                    if (smart_clock.key_function.confirm) {
-                        smart_clock.key_function.confirm = 0;
-                        smart_clock.countdown_mode++;
-                    }
-                }
-                if (smart_clock.countdown_mode == COUNTDOWN_YEAR && choose == 1) {
-                    if (smart_clock.key_function.trigger_up) {
-                        countdown.year++;
-                        smart_clock.key_function.trigger_up = 0;
-                    } else if (smart_clock.key_function.trigger_down) {
-                        countdown.year--;
-                        if (countdown.year < 0) countdown.year = 0;
-                        smart_clock.key_function.trigger_down = 0;
-                    }
-                    OLED_ShowString(2, 1, "--Count Year----");
-                    OLED_ShowString(3, 1, "<");
-                    OLED_ShowNum(3, 2, countdown.year, 4);
-                    OLED_ShowString(3, 6, ">: ");
-                    OLED_ShowNum(3, 9, countdown.month, 2);
-                    OLED_ShowString(3, 11, " : ");
-                    OLED_ShowNum(3, 14, countdown.day, 2);
-                    OLED_ShowString(3, 16, " ");
-                    if (smart_clock.key_function.confirm) {
+                     if (smart_clock.key_function.confirm) {
                         smart_clock.key_function.confirm = 0;
 						countdown_start = 1;  // start countdown
                         smart_clock.key_function.set_mode = 0;
