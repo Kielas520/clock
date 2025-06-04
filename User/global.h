@@ -19,6 +19,12 @@ uint8_t trigger_up;
 uint8_t trigger_down;
 }Key_Function_t;
 
+typedef struct {
+uint8_t alarm_triggered;
+uint8_t countdown_start;
+}Alarm_Function_t;
+
+
 typedef enum{
     DATE_MODE=0,
     CLOCK_MODE,
@@ -63,25 +69,13 @@ typedef enum{
 
 typedef struct {
 Key_Function_t key_function;
+Alarm_Function_t alarm_function;
 Show_Clock_Mode_e show_clock_mode;
 Set_Clock_Mode_e set_clock_mode;
 Set_Time_Mode_e set_time_mode;
 Countdown_Mode_e countdown_mode;
 Function_Mode_e function_mode;
 }Smart_Clock_t;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 extern const uint8_t days_in_month_normal[12];
 extern const uint8_t days_in_month_leap[12];
@@ -92,7 +86,6 @@ extern Time_t countdown;
 extern Smart_Clock_t smart_clock;
 
 extern uint8_t days_in_current_month;
-extern uint8_t countdown_start;
 extern uint8_t choose;
 extern int8_t choose_buff;
 extern uint8_t key_states[4];

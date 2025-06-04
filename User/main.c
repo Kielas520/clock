@@ -11,15 +11,13 @@ const uint8_t days_in_month_normal[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31
 const uint8_t days_in_month_leap[12] = {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
 // 全局变量定义
-
 Time_t time = {0, 0, 0, 1, 1, 2025}; // 定义当前时间，初始值为 2025年1月1日 00:00:00
 Time_t clock = {0, 0, 0, 1, 1, 2025}; // 定义闹钟时间，初始值同上
 Time_t end = {0, 0, 0, 0, 0, 0}; // 定义倒计时时间，初始值为 0
 Time_t countdown = {0, 0, 0, 0, 0, 0}; // 定义倒计时时间，初始值为 0
 uint8_t days_in_current_month = 30; // 存储当前月份的天数
 Smart_Clock_t smart_clock;
-uint8_t alarm_triggered = 0;
-uint8_t countdown_start = 0;
+uint8_t is_leap = 0;
 uint8_t choose = 0; // 当前选择项
 int8_t choose_buff = 0; // 选择缓冲变量
 uint8_t key_states[4] = {0}; // 存储按键状态
@@ -38,8 +36,10 @@ uint8_t is_leap_year(uint16_t year) {
 uint8_t get_days_in_month(uint8_t month, uint16_t year) {
     if (month < 1 || month > 12) return 0; // 防止越界
     if (is_leap_year(year)) {
+		is_leap = 1;
         return days_in_month_leap[month - 1];
     } else {
+		is_leap = 0;
         return days_in_month_normal[month - 1];
     }
 }
@@ -112,6 +112,7 @@ void UpdateCountdownTime(void) {
 }
 
 void ShowTime(void) {
+	OLED_ShowString(1, 1, "Kielas");
     OLED_ShowString(4, 1, "--Mode----Show--");
     OLED_ShowString(2, 1, "------Time------");
     OLED_ShowString(3, 1, "  ");
@@ -124,6 +125,12 @@ void ShowTime(void) {
 }
 
 void ShowDate(void) {
+	if(is_leap == 1){
+		OLED_ShowString(1, 1, "-LEAP-");
+	}
+	else{
+		OLED_ShowString(1, 1, "NORMAL");
+	}
     OLED_ShowString(4, 1, "--Mode----Show--");
     OLED_ShowString(2, 1, "------Date------");
     OLED_ShowString(3, 1, " ");
@@ -159,26 +166,26 @@ int main(void) {
     {
 		if (is_time_equal(&time, &clock)) 
         {
-            if (alarm_triggered) 
+            if (smart_clock.alarm_function.alarm_triggered) 
             {
                     Buzzer_ON();
-					OLED_ShowString(1, 1, "Kielas-CLK-TIME-");
+					OLED_ShowString(1, 7, "-CLK-TIME-");
                     Delay_ms(1000);
-					OLED_ShowString(1, 1, "Kielas          ");
+					OLED_ShowString(1, 7, "          ");
                     Buzzer_OFF();
-                    alarm_triggered = 0;
+                    smart_clock.alarm_function.alarm_triggered = 0;
             }
 		}
 		else if (is_time_equal(&end, &countdown)) 
         {
-            if (countdown_start) 
+            if (smart_clock.alarm_function.countdown_start) 
             {
                     Buzzer_ON();
-					OLED_ShowString(1, 1, "Kielas-TIM-OVER-");
+					OLED_ShowString(1, 7, "-TIM-OVER-");
                     Delay_ms(1000);
-					OLED_ShowString(1, 1, "Kielas          ");
+					OLED_ShowString(1, 7, "          ");
                     Buzzer_OFF();
-                    countdown_start = 0;
+                    smart_clock.alarm_function.countdown_start = 0;
             }
 		}
 
@@ -195,7 +202,7 @@ int main(void) {
         {  
             if (smart_clock.key_function.confirm) 
             {
-								smart_clock.show_clock_mode=!smart_clock.show_clock_mode;
+				smart_clock.show_clock_mode=!smart_clock.show_clock_mode;
                 smart_clock.key_function.confirm = 0;
             }
 						
@@ -212,6 +219,7 @@ int main(void) {
         {
             if (choose == 0) 
             {
+				OLED_ShowString(1, 1, "Kielas");
                 OLED_ShowString(4, 1, "--Mode----Set---");
                 OLED_ShowString(2, 1, "-----Choose-----");
                 if (smart_clock.key_function.trigger_up) 
@@ -604,7 +612,7 @@ int main(void) {
 										{
                         smart_clock.key_function.confirm = 0;
                         smart_clock.set_clock_mode = 0; // 完成闹钟设置，退出
-						alarm_triggered = 1;
+						smart_clock.alarm_function.alarm_triggered = 1;
                         smart_clock.key_function.set_mode = 0;
                         choose = 0;
                     }
@@ -677,7 +685,7 @@ int main(void) {
                     OLED_ShowString(3, 15, "> ");
                      if (smart_clock.key_function.confirm) {
                         smart_clock.key_function.confirm = 0;
-						countdown_start = 1;  // start countdown
+						smart_clock.alarm_function.countdown_start = 1;  // start countdown
                         smart_clock.key_function.set_mode = 0;
                         choose = 0;
                         smart_clock.countdown_mode = 0; // 完成倒计时设置，退出
@@ -693,7 +701,7 @@ void TIM1_UP_IRQHandler(void) {
         TIM_ClearITPendingBit(TIM1, TIM_IT_Update);
         if (smart_clock.key_function.set_mode == 0) {
             time.sec++;
-			if(countdown_start == 1){
+			if(smart_clock.alarm_function.countdown_start == 1){
 				countdown.sec--;
 			}
             if (time.sec % 10 == 0) {

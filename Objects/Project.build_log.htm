@@ -27,7 +27,35 @@ Project File Date:  05/25/2025
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 5 (build 528)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-".\Objects\Project.axf" - 0 Error(s), 0 Warning(s).
+compiling main.c...
+User\global.h(93): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\Hardware\Key.h(8): warning:  #1-D: last line of file ends without a newline
+  #endif
+.\Hardware\Buzzer.h(9): warning:  #1-D: last line of file ends without a newline
+   
+User\main.c(205): warning:  #188-D: enumerated type mixed with another type
+  				smart_clock.show_clock_mode=!smart_clock.show_clock_mode;
+User\main.c(247): warning:  #188-D: enumerated type mixed with another type
+                          smart_clock.set_clock_mode = 1;
+User\main.c(257): warning:  #188-D: enumerated type mixed with another type
+                          smart_clock.countdown_mode = 1;
+User\main.c(267): warning:  #188-D: enumerated type mixed with another type
+                          smart_clock.set_time_mode = 1;
+User\main.c(440): warning:  #188-D: enumerated type mixed with another type
+                          smart_clock.set_time_mode = 0; // 完成时间和日期设置，退�?
+User\main.c(614): warning:  #188-D: enumerated type mixed with another type
+                          smart_clock.set_clock_mode = 0; // 完成闹钟设置，退�?
+User\main.c(691): warning:  #188-D: enumerated type mixed with another type
+                          smart_clock.countdown_mode = 0; // 完成倒计时设置，退�?
+User\main.c(708): warning:  #188-D: enumerated type mixed with another type
+                  smart_clock.show_clock_mode=!smart_clock.show_clock_mode;
+User\main.c(712): warning:  #1-D: last line of file ends without a newline
+  }
+User\main.c: 12 warnings, 0 errors
+linking...
+Program Size: Code=8336 RO-data=1836 RW-data=40 ZI-data=1648  
+".\Objects\Project.axf" - 0 Error(s), 12 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -40,7 +68,7 @@ Package Vendor: Keil
   D:/KEIL_PACK/Keil/STM32F1xx_DFP/2.2.0/Device/Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
