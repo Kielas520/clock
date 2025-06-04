@@ -88,6 +88,7 @@ extern Smart_Clock_t smart_clock;
 extern uint8_t days_in_current_month;
 extern uint8_t choose;
 extern int8_t choose_buff;
+extern uint8_t is_leap = 0;
 extern uint8_t key_states[4];
 
 #endif

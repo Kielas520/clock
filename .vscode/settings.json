@@ -44,5 +44,6 @@
         "global.h": "c",
         "key.h": "c",
         "stdint.h": "c"
-    }
+    },
+    "files.autoSave": "onFocusChange"
 }
