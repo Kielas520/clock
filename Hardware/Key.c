@@ -11,10 +11,7 @@ void Key_Init(void)
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU; 
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9 | GPIO_Pin_11;
-    GPIO_Init(GPIOA, &GPIO_InitStructure);
-
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13 | GPIO_Pin_15;
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_1 | GPIO_Pin_0;
     GPIO_Init(GPIOB, &GPIO_InitStructure);
 }
 
@@ -28,7 +25,7 @@ void Key_GetNum(uint8_t *key_states)
 
     // 定义按键引脚和端口
     GPIO_TypeDef* ports[4] = {GPIOB, GPIOB, GPIOA, GPIOA};
-    uint16_t pins[4] = {GPIO_Pin_13, GPIO_Pin_15, GPIO_Pin_9, GPIO_Pin_11};
+    uint16_t pins[4] = {GPIO_Pin_10 , GPIO_Pin_11 , GPIO_Pin_1 , GPIO_Pin_0};
 
     // 逐个检测按键
     for (int i = 0; i < 4; i++) {
